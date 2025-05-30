@@ -47,7 +47,7 @@ class UserDBController {
 
         val conn = DriverManager.getConnection(db_url, props.toProperties())
         val st = conn.createStatement()
-        val getUsers = st.executeQuery("SELECT * FROM users WHERE surname = '${surname}' AND name = ${name} AND groupname = '${group}'")
+        val getUsers = st.executeQuery("SELECT * FROM users WHERE surname = '${surname}' AND name = ${name} AND groupname = '${group}' AND password = '${password}'")
         if(getUsers.next()) {
             println("Пользователь найден")
             TODO("Надо сделать ответ на фронт")

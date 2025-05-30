@@ -10,7 +10,7 @@ fun main(){
     val json = Json.encodeToString(test)
     println(json)
     thread(start = true) {
-        UserDBController().Register(json)
+//        UserDBController().Register(json)
         UserDBController().SignIn(json)
         println("${Thread.currentThread().name} has run!")
     }
