@@ -8,9 +8,9 @@ import kotlinx.coroutines.*
 @Serializable
 data class userInfo(val username: String, val Group: String, val password: String)
 
-val db_url = "jdbc:postgresql://192.168.0.13:5432/authorization"
-val db_username = "SYSDBA"
-val db_password = "masterkey"
+val db_url = "jdbc:postgresql://supernova-light.ru:5432/authorization"
+val db_username = "Admin"
+val db_password = "239w671290e12edasd!saf"
 val props = mapOf("user" to db_username, "password" to db_password)
 
 
