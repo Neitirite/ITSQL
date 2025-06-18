@@ -24,10 +24,6 @@ fun main() {
         routing {
             webSocket ("/"){
                 println("New connection: ${this.call.request.origin.remoteHost}")
-                val binaryChunks = mutableListOf<ByteArray>()
-                var id: String? = null
-                var width: Int? = null
-                var height: Int? = null
                 try {
                     for (frame in incoming) {
                         when (frame) {
@@ -39,7 +35,8 @@ fun main() {
                                     "createTopic" -> {
                                         val topic = command.properties["name"]?.jsonPrimitive?.content
                                         try {
-                                            Topics().createTopic(topic.toString())
+                                            val response = Topics().createTopic(topic.toString())
+                                            send(response)
                                         } catch (e: Exception) {
                                             println("Failed to create topic: ${e.message}")
                                         }
@@ -47,6 +44,14 @@ fun main() {
                                     "sendMessage" -> {
                                         println(command.properties["topic"]?.jsonPrimitive?.content)
                                         println(command.properties["message"]?.jsonPrimitive?.content)
+                                    }
+                                    "deleteTopic" -> {
+                                        val topic = command.properties["topic"]?.jsonPrimitive?.content
+                                        try {
+                                            Topics().deleteTopic(topic.toString())
+                                        } catch (e: Exception) {
+                                            println("Failed to delete topic: ${e.message}")
+                                        }
                                     }
                                 }
                             }
