@@ -6,7 +6,11 @@ import io.ktor.server.plugins.*
 import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
 import io.ktor.websocket.*
+import kotlinx.serialization.Serializable
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonPrimitive
+
 
 fun main() {
     embeddedServer(Netty, 5000, "0.0.0.0") {
@@ -18,7 +22,7 @@ fun main() {
         }
         println("Starting websocket api...")
         routing {
-            webSocket ("/api"){
+            webSocket ("/"){
                 println("New connection: ${this.call.request.origin.remoteHost}")
                 val binaryChunks = mutableListOf<ByteArray>()
                 var id: String? = null
@@ -29,18 +33,21 @@ fun main() {
                         when (frame) {
                             is Frame.Text -> {
                                 val text = frame.readText()
-                                val command = text.split(" ")
-                                if (command[0] == "joinTopic") {
-                                    try {
-                                        Topics().joinTopic(command[1])
-                                    } catch (e: Exception) {
-                                        println("Failed to join topic: ${e.message}")
+                                val command = Json.decodeFromString<Serialization.Command>(text)
+                                println("Received command: ${command.command}")
+                                when (command.command) {
+                                    "createTopic" -> {
+                                        val topic = command.properties["name"]?.jsonPrimitive?.content
+                                        try {
+                                            Topics().createTopic(topic.toString())
+                                        } catch (e: Exception) {
+                                            println("Failed to create topic: ${e.message}")
+                                        }
                                     }
-
-                                    break
-                                }
-                                else if (command[0] == "sendMessage") {
-
+                                    "sendMessage" -> {
+                                        println(command.properties["topic"]?.jsonPrimitive?.content)
+                                        println(command.properties["message"]?.jsonPrimitive?.content)
+                                    }
                                 }
                             }
                             else -> {
@@ -54,5 +61,5 @@ fun main() {
             }
 
         }
-    }
+    }.start(wait = true)
 }
