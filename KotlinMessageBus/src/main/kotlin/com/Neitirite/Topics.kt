@@ -39,11 +39,9 @@ class Topics {
             return "Failed to send message in $topicName: Topic does not exist"
         } else {
             val messages = topicFile.readText()
-            println(messages)
             if(messages != "" && messages != "[]") {
                 var parsedMessages = Json.decodeFromString<List<Serialization.Messages>>(messages)
                 val newMessage = Serialization.Messages((parsedMessages.last().id.toInt() + 1).toString(), message)
-                println("New messages: $newMessage")
                 parsedMessages += newMessage
                 println(Json.encodeToJsonElement(parsedMessages))
                 topicFile.writeText(Json.encodeToJsonElement(parsedMessages).toString())
