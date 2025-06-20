@@ -55,6 +55,15 @@ fun main() {
                                             println("Failed to delete topic: ${e.message}")
                                         }
                                     }
+                                    "receiveMessage" -> {
+                                        val topic = command.properties["topic"]?.jsonPrimitive?.content
+                                        try {
+                                            val response = Topics().receiveMessage(topic.toString())
+                                            send(response)
+                                        } catch (e: Exception) {
+                                            println("Failed to receive message: ${e.message}")
+                                        }
+                                    }
                                 }
                             }
                             else -> {

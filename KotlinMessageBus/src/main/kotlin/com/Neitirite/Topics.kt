@@ -13,7 +13,7 @@ class Topics {
         if(!topicFile.exists()){
             topicFile.createNewFile()
             println("Created topic $topicName in ${topicFile.absolutePath}")
-            return "Created topic $topicName"
+            return "Created topic \"$topicName\""
         } else {
             return "joined to the existing topic $topicName"
         }
@@ -22,10 +22,10 @@ class Topics {
 
     fun deleteTopic(topicName: String?): String{
         val topicFile = File("${topicDirectory}/$topicName")
-        deleteIfExists(topicFile.toPath())
         if(topicFile.exists()){
+            deleteIfExists(topicFile.toPath())
             println("Deleted topic $topicName in ${topicFile.absolutePath}")
-            return "Deleted topic $topicName"
+            return "Deleted topic \"$topicName\""
         } else {
             return "Failed to delete $topicName: Topic does not exist"
         }
@@ -38,27 +38,37 @@ class Topics {
             println("Failed to send message in $topicName. File does not exist: ${topicFile.absolutePath}")
             return "Failed to send message in $topicName: Topic does not exist"
         } else {
-            fetchMessages(topicName, message)
+            val messages = topicFile.readText()
+            println(messages)
+            if(messages != "" && messages != "[]") {
+                var parsedMessages = Json.decodeFromString<List<Serialization.Messages>>(messages)
+                val newMessage = Serialization.Messages((parsedMessages.last().id.toInt() + 1).toString(), message)
+                println("New messages: $newMessage")
+                parsedMessages += newMessage
+                println(Json.encodeToJsonElement(parsedMessages))
+                topicFile.writeText(Json.encodeToJsonElement(parsedMessages).toString())
+            } else {
+                val newMessage = Serialization.Messages("0", message)
+                val updatedMessages = Json.encodeToString(newMessage)
+                topicFile.writeText("[$updatedMessages]")
+            }
             return "Successfully sent message $message in $topicName"
         }
     }
 
-    fun fetchMessages(topic: String, message: JsonObject){
+    fun receiveMessage(topic: String): String{
         val topicFile = File("${topicDirectory}/$topic")
         val messages = topicFile.readText()
-        println(messages)
-        if(messages != ""){
-            var parsedMessages = Json.decodeFromString<List<Serialization.Messages>>(messages)
-            val newMessage = Serialization.Messages((parsedMessages.last().id.toInt() + 1).toString(), message)
-            println("New messages: $newMessage")
-            parsedMessages += newMessage
-            println(Json.encodeToJsonElement(parsedMessages))
+        if(messages != "" && messages != "[]"){
+            val parsedMessages = Json.decodeFromString<MutableList<Serialization.Messages>>(messages)
+            val message = parsedMessages.first().message
+            parsedMessages.removeFirst()
             topicFile.writeText(Json.encodeToJsonElement(parsedMessages).toString())
+            return Json.encodeToString(message)
         } else {
-            val newMessage = Serialization.Messages("0", message)
-            val updatedMessages = Json.encodeToString(newMessage)
-            topicFile.writeText("[$updatedMessages]")
+            return "There is no messages in topic"
         }
+
 
     }
 
