@@ -17,7 +17,6 @@ dependencies {
     implementation("io.ktor:ktor-server-netty:3.1.2")
     implementation("io.ktor:ktor-server-websockets:3.1.2")
     implementation("org.slf4j:slf4j-simple:2.0.7")
-    implementation("io.ktor:ktor-server-cokkies:3.1.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 }
 
