@@ -17,7 +17,7 @@ suspend fun main(){
     }
     client.webSocket(
         method = HttpMethod.Get,
-        host = "localhost",
+        host = "127.0.0.1",
         port = 5000,
         path = "/"
     ) {
@@ -40,38 +40,28 @@ suspend fun main(){
             if (response.readText() != "There is no messages in topic") {
                 val command = Json.decodeFromString<ReceivedMessage>(response.readText())
                 println(response.readText())
-
                 when (command.command) {
                     "register" -> {
                         println(command.properties)
                         val result = UserDBController().Register(Json.encodeToString(command.properties))
-                        println(result)
-                        if(result != "") {
-                            println(true)
-                            val message = MessageForSend(command.id, result)
-                            send(Frame.Text("{\"command\": \"sendMessage\", \"properties\":{\"topic\": " +
-                                    "\"backToFront\", \"message\":${Json.encodeToString(message)}}}"))
-                            val response = incoming.receive() as Frame.Text
-                            println(response.readText())
-                        }
+                        val message = MessageForSend(command.id, result)
+                        send(Frame.Text("{\"command\": \"sendMessage\", \"properties\":{\"topic\": " +
+                                "\"backToFront\", \"message\":${Json.encodeToString(message)}}}"))
+                        val response = incoming.receive() as Frame.Text
+                        println(response.readText())
                     }
                     "login" -> {
-                        thread(start = true) {
-                            UserDBController().SignIn(Json.encodeToString(command.properties))
-                        }
+                        val result = UserDBController().SignIn(Json.encodeToString(command.properties))
+                        val message = MessageForSend(command.id, result)
+                        send(Frame.Text("{\"command\": \"sendMessage\", \"properties\":{\"topic\": " +
+                                "\"backToFront\", \"message\":${Json.encodeToString(message)}}}"))
+                        val response = incoming.receive() as Frame.Text
+                        println(response.readText())
                     }
                 }
             }
         }
         delay(1000)
     }
-//    val test = test("sursname name", "group", "password")
-//    val json = Json.encodeToString(test)
-//    println(json)
-//    thread(start = true) {
-////        UserDBController().Register(json)
-//        UserDBController().SignIn(json)
-//        println("${Thread.currentThread().name} has run!")
-//    }
 
 }

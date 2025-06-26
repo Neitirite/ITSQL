@@ -17,21 +17,21 @@ class UserDBController {
         val name = parsedData.name
         val group = parsedData.group
         val password = parsedData.password
-        println("parsed data is ${surname}, ${name}, ${group}, ${password}")
+        println("parsed data is $surname, $name, $group, $password")
 
         val conn = DriverManager.getConnection(db_url, props.toProperties())
         val st = conn.createStatement()
 
-        val getUsers = st.executeQuery("SELECT * FROM users WHERE surname = '${surname}' AND name = ${name} AND groupname = '${group}'")
+        val getUsers = st.executeQuery("SELECT * FROM users WHERE SURNAME = '${surname}' AND NAME = '${name}' AND GROUPNAME = '${group}'")
         if(getUsers.next()) {
             getUsers.close()
             st.close()
-            println("пользователь уже существует")
-            return "User ${surname} ${name} from ${group} already exists"
+            println("User $surname $name from $group already exists")
+            return "User $surname $name from $group already exists"
         } else {
             try {
                 val rs = st.executeQuery(
-                    "insert into users (surname, name, groupname, password) values ('${surname}', '${name}', '${group}', '${password}')"
+                    "insert into users (SURNAME, NAME, GROUPNAME, PASSWORD) values ('${surname}', '${name}', '${group}', '${password}')"
                 )
                 rs.close()
             } catch (e: Exception) {
@@ -39,7 +39,8 @@ class UserDBController {
             }
             getUsers.close()
             st.close()
-            return "user ${surname} ${name} from ${group} successfully registered"
+            println("Registered new user $surname $name from $group")
+            return "User $surname $name from $group successfully registered"
         }
 
 
@@ -53,13 +54,13 @@ class UserDBController {
         val password = parsedData.password
         val conn = DriverManager.getConnection(db_url, props.toProperties())
         val st = conn.createStatement()
-        val getUsers = st.executeQuery("SELECT * FROM users WHERE surname = '${surname}' AND name = ${name} AND groupname = '${group}' AND password = '${password}'")
+        val getUsers = st.executeQuery("SELECT * FROM users WHERE SURNAME = '${surname}' AND NAME = '${name}' AND GROUPNAME = '${group}' AND PASSWORD = '${password}'")
         if(getUsers.next()) {
-            println("Пользователь найден")
-            TODO("Надо сделать ответ на фронт")
+            println("Found user $surname $name from $group")
+            return "OK"
         } else {
-            println("Пользователь не существует")
+            println("Can't find user $surname $name from $group")
+            return "Incorrect login data"
         }
-        return ""
     }
 }
