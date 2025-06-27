@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="../static/sign_in.css">
+</head>
+<body>
+    <div class="container">
+        <form class="auth-box">
+            <div class="input-row">
+                <input type="text" name="fio" class="auth-input name-input" placeholder="Фамилия Имя" required>
+                <input type="text" name="group" class="auth-input group-input" placeholder="Группа" required>
+            </div>
+            <div class="input-row">
+                <input type="password" name="pswd" class="auth-input password-input" placeholder="Пароль" required>
+            </div>
+            <div class="error"></div>
+            <button type="submit" class="auth-btn">Авторизация</button>
+            <a href="register" class="register-link">Нет аккаунта? Регистрация</a>
+        </form>
+    </div>
+    <script src="../static/sign_in.js"></script>
+</body>
+</html>

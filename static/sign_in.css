@@ -1,0 +1,117 @@
+body {
+    background: #d5ffa6;
+    background: linear-gradient(138deg,rgba(213, 255, 166, 1) 0%, rgba(63, 166, 106, 1) 50%, rgba(0, 181, 172, 1) 100%);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+.container {
+    width: 40rem;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.auth-box {
+    background: rgba(78, 78, 78, 0.17);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    padding: 36px 30px 30px 30px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.input-row {
+    display: flex;
+    gap: 14px;
+}
+.auth-input {
+    background: rgba(255, 255, 255, 0.17);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    padding: 16px;
+    color: #ccc;
+    font-size: 18px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+.auth-input::placeholder {
+    color: #d4d4d4;
+}
+.name-input {
+    flex: 2;
+}
+.group-input {
+    flex: 1;
+    max-width: 150px;
+}
+.password-row {
+    display: flex;
+    gap: 14px;
+}
+.password-input {
+    flex: 2;
+}
+.auth-btn {
+    background: rgba(255, 255, 255, 0.17);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    color: #ffffff;
+    padding: 14px 0;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 6px;
+}
+.auth-btn:hover {
+    background: #0f97d1;
+}
+.register-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    opacity: 0.85;
+}
+.register-link:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+.shake {
+    animation: shake 0.4s ease-out;
+    border: 2px solid red;
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 14px 0;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 6px;
+}
+@keyframes shake {
+    0% { transform: translate(2px); }
+    25% { transform: translate(-2px); }
+    50% { transform: translate(2px); }
+    75% { transform: translate(-2px); }
+    100% { transform: translate(2px); }
+}
+.error {
+    color: #fff;
+    font-size: 18px;
+}
