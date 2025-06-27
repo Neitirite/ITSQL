@@ -27,6 +27,7 @@ class UserDBController {
             getUsers.close()
             st.close()
             println("User $surname $name from $group already exists")
+            Logger().writeLog("User $surname $name from $group already exists")
             return "User $surname $name from $group already exists"
         } else {
             try {
@@ -40,6 +41,7 @@ class UserDBController {
             getUsers.close()
             st.close()
             println("Registered new user $surname $name from $group")
+            Logger().writeLog("Registered new user $surname $name from $group")
             return "User $surname $name from $group successfully registered"
         }
 
@@ -57,9 +59,11 @@ class UserDBController {
         val getUsers = st.executeQuery("SELECT * FROM users WHERE SURNAME = '${surname}' AND NAME = '${name}' AND GROUPNAME = '${group}' AND PASSWORD = '${password}'")
         if(getUsers.next()) {
             println("Found user $surname $name from $group")
+            Logger().writeLog("Found user $surname $name from $group")
             return "OK"
         } else {
             println("Can't find user $surname $name from $group")
+            Logger().writeLog("Can't find user $surname $name from $group")
             return "Incorrect login data"
         }
     }
