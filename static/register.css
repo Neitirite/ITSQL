@@ -15,7 +15,7 @@ body {
     transform: translate(-50%, -50%);
 }
 .register-box {
-    background: rgba(78, 78, 78, 0.17);
+    background: #333;
     border-radius: 16px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -29,6 +29,28 @@ body {
 .input-row {
     display: flex;
     gap: 14px;
+}
+.input-fio {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    flex: 3;
+}
+.input-fio:focus-within .input-label,
+.input-fio input:not(:placeholder-shown) .input-label{
+    font-size: 14px;
+    position: absolute;
+    top: -8px;
+    background: #555;
+    border: 1px solid #555;
+    border-radius: 1px;
+}
+
+.input-group {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    flex: 1;
 }
 .register-input {
     background: rgba(255, 255, 255, 0.17);
@@ -51,7 +73,6 @@ body {
 }
 .group-input {
     flex: 1;
-    max-width: 150px;
 }
 .password-row {
     display: flex;
@@ -59,6 +80,14 @@ body {
 }
 .password-input {
     flex: 2;
+}
+.input-pass{
+    flex: 2;
+    position: relative;
+}
+.input-pass-confirm{
+    flex: 2;
+    position: relative;
 }
 .register-button {
     background: rgba(255, 255, 255, 0.17);
@@ -89,4 +118,15 @@ body {
 .register-link:hover {
     text-decoration: underline;
     opacity: 1;
+}
+.input-label {
+    font-size: 18px;
+    background: transparent;
+    position: absolute;
+    color: #ccc;
+    top: 17px;
+    left: 17px;
+    user-select: none;
+    pointer-events: none;
+    transition: .2s;
 }

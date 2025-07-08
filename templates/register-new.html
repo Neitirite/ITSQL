@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="../static/register-new.css">
+</head>
+<body>
+    <div class="main-container">
+        <form class="register-form" action="#">
+            <div class="input-row">
+                <div class="input-fio">
+                    <input placeholder=" " type="text" id="fio-input" class="register-input" required>
+                    <label for="fio-input" class="input-label">Фамилия Имя</label>
+                </div>
+                <div class="input-group">
+                    <input placeholder=" " type="text" id="group-input" class="register-input">
+                    <label for="group-input" class="input-label">Группа</label>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-pass">
+                    <input placeholder=" " type="password" id="pass-input" class="register-input">
+                    <label for="pass-input" class="input-label">Пароль</label>
+                </div>
+                <div class="input-pass-confirm">
+                    <input placeholder=" " type="password" id="pass-confirm" class="register-input">
+                    <label for="pass-confirm" class="input-label">Подтверждение пароля</label>
+                </div>
+            </div>
+            <button type="submit" class="register-button">Регистрация</button>
+            <a href="login" class="register-link">Есть аккаунт? Вход</a>
+        </form>
+    </div>
+</body>
+</html>

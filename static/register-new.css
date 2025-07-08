@@ -1,0 +1,156 @@
+body {
+    background: #d5ffa6;
+    background: linear-gradient(138deg, rgba(213, 255, 166, 1) 0%, rgba(63, 166, 106, 1) 50%, rgba(0, 181, 172,1) 100%);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+.main-container {
+    width: 40rem;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.register-form {
+    background: #333;
+    border: 1px solid #444;
+    border-radius: 16px;
+    padding: 30px 30px 30px 30px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+
+.input-row {
+    display: flex;
+    gap: 14px;
+}
+
+
+.input-fio {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    flex: 3;
+    outline: none;
+}
+.input-group {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    flex: 1;
+}
+.input-pass {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    flex: 2;
+}
+.input-pass-confirm {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    flex: 2;
+}
+
+
+.register-input {
+    background: #555;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    padding: 16px;
+    width: 100%;
+    border-radius: 16px;
+    box-sizing: border-box;
+    outline: none;
+    color: #ccc;
+    font-size: 18px;
+}
+.input-label {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    color: #ccc;
+    user-select: none;
+    pointer-events: none;
+    transition: 0.2s;
+}
+.register-button {
+    background: #555;
+    border-radius: 16px;
+    border:1px solid rgba(128, 128, 128, 0.3);
+    color: #fff;
+    padding: 14px 0;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 16px;
+}
+.register-button:hover {
+    background: #3584e4;
+}
+.register-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    opacity: 0.85;
+}
+.register-link:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+
+.input-fio:focus-within .input-label,
+.input-fio input:not(:placeholder-shown) + .input-label{
+    font-size: 14px;
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background: #555;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 6px;
+    padding: 2px 2px 2px 2px;
+}
+.input-group:focus-within .input-label,
+.input-group input:not(:placeholder-shown) + .input-label{
+    font-size: 14px;
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background: #555;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 6px;
+    padding: 2px 2px 2px 2px;
+}
+.input-pass:focus-within .input-label,
+.input-pass input:not(:placeholder-shown) + .input-label{
+    font-size: 14px;
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background: #555;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 6px;
+    padding: 2px 2px 2px 2px;
+}
+.input-pass-confirm:focus-within .input-label,
+.input-pass-confirm input:not(:placeholder-shown) + .input-label{
+    font-size: 14px;
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background: #555;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 6px;
+    padding: 2px 2px 2px 2px;
+}

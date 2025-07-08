@@ -9,12 +9,24 @@
     <div class="container">
         <form class="register-box" action="#">
             <div class="input-row">
-                <input type="text" name="fio" class="register-input name-input" placeholder="Фамилия Имя" required>
-                <input type="text" name="group" class="register-input group-input" placeholder="Группа" required>
+                <div class="input-fio">
+                    <input type="text" id="fio" name="fio" class="register-input name-input" required pattern="[A-Za-z]+">
+                    <label for="fio" class="input-label">Фамилия Имя</label>
+                </div>
+                <div class="input-group">
+                <input type="text" id="group" name="group" class="register-input group-input" required>
+                <label for="group" class="input-label">Группа</label>
+                </div>
             </div>
             <div class="input-row">
-                <input type="password" name="pswd" class="register-input password-input" placeholder="Пароль" required>
-                <input type="password" name="submit-pswd" class="register-input password-input" placeholder="Подтверждение пароля" required>
+                <div class="input-pass">
+                    <input type="password" name="pswd" class="register-input password-input" required>
+                    <label for="fio" class="input-label">Пароль</label>
+                </div>
+                <div class="input-pass-confirm">
+                    <input type="password" name="submit-pswd" class="register-input password-input" required>
+                    <label for="fio" class="input-label">Подтверждение пароля</label>
+                </div>
             </div>
             <div class="error"></div>
             <button type="submit" class="register-button">Регистрация</button>

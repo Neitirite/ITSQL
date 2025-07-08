@@ -1,5 +1,6 @@
 body {
-    background: #555;
+    background: #d5ffa6;
+    background: linear-gradient(138deg,rgba(213, 255, 166, 1) 0%, rgba(63, 166, 106, 1) 50%, rgba(0, 181, 172, 1) 100%);
     color: #fff;
     font-family: 'Consolas', 'PT Mono', 'Courier New', monospace;
     font-size: 24px;
@@ -14,8 +15,11 @@ body {
     box-sizing: border-box;
 }
 .sidebar {
-    background: #444;
+    background: rgba(78, 78, 78, 0.5);
     border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
     padding: 24px 16px;
     min-width: 320px;
     max-width: 400px;
@@ -66,9 +70,12 @@ body {
 }
 
 .block {
-    background: #444;
-    height: 100%;
+    background: rgba(78, 78, 78, 0.5);
     border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    height: 100%;
     padding: 14px 18px 18px 18px;
     margin-bottom: 0;
     display: flex;
@@ -85,14 +92,16 @@ body {
     /* Убираем height: 100%, чтобы высота могла изменяться */
     height: 100%;
     width: 100%;
-    background: #3a3a3a;
+    background: rgba(255, 255, 255, 0.17);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
     color: #fff;
-    border: none;
-    border-radius: 8px;
     padding: 10px 12px;
     font-family: inherit;
     font-size: 1em;
-    resize: noen;
+    resize: none;
     box-sizing: border-box;
     min-height: 50px;
     max-height: 400px; /* ограничиваем максимальную высоту */
@@ -118,10 +127,12 @@ body {
     justify-content: flex-end;
 }
 .buttonSend, .buttonTry {
-    background: #2ecc71;
-    color: #fff;
-    border: none;
+    background: rgba(255, 255, 255, 0.17);
     border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    color: #fff;
     padding: 7px 22px;
     font-size: 1em;
     cursor: pointer;
@@ -129,10 +140,12 @@ body {
     font-family: inherit;
 }
 .buttonEnd {
-    background: #2ecc71;
-    color: #fff;
-    border: none;
+    background: rgba(255, 255, 255, 0.17);
     border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    color: #fff;
     padding: 7px 22px;
     font-size: 1em;
     cursor: pointer;
@@ -145,13 +158,16 @@ body {
 .buttonSend:hover, 
 .buttonEnd:hover, 
 .buttonTry:hover {
-    background: #27ae60;
+    background: #0f97d1;
 }
 .output {
     min-height: 25rem;
     height: 100%;
-    background: #3a3a3a;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.17);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(128, 128, 128, 0.3);
     color: #fff;
     padding: 10px;
     font-family: inherit;
