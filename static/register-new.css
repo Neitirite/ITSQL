@@ -76,7 +76,7 @@ body {
 }
 .input-label {
     position: absolute;
-    top: 18px;
+    top: 35%;
     left: 18px;
     color: #ccc;
     user-select: none;
